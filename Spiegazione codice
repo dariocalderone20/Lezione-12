@@ -1,0 +1,15 @@
+Il codice proposto crea un server TCP che ascolta su una porta specifica e fornisce alcune funzionalità di base in base ai comandi inviati dai client. Ecco una spiegazione del codice:
+
+Importano i moduli necessari: socket, platform, e os.
+Definiscono le costanti SRV_ADDR (indirizzo del server) e SRV_PORT (numero di porta).
+Creano un socket TCP (s) usando socket.socket() specificando AF_INET per la famiglia degli indirizzi IPv4 e SOCK_STREAM per il tipo di socket TCP.
+Associano il socket all'indirizzo e alla porta specificati usando bind().
+Mettono il socket in modalità di ascolto usando listen(), specificando che può accettare una connessione alla volta.
+Accettano una connessione in arrivo utilizzando accept(). Questo blocca il programma finché non arriva una connessione. Quando arriva una connessione, viene accettata e accept() restituisce una tupla contenente il socket di connessione (connection) e l'indirizzo del client (address).
+Stampa l'indirizzo del client che si è connesso.
+Entra in un loop infinito per gestire i comandi inviati dal client.
+Riceve i dati inviati dal client usando recv().
+Se il dato ricevuto è '1', invia al client il nome della piattaforma e l'architettura del sistema.
+Se il dato ricevuto è '2', il server riceve un altro dato, elencandone i file nella directory specificata e inviando la lista dei file al client.
+Se il dato ricevuto è '0', chiude la connessione attuale e attende una nuova connessione.
+Il loop si ripete per gestire ulteriori comandi.
